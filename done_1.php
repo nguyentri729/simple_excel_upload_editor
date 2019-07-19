@@ -6,7 +6,8 @@ if(!isset($_GET['id_file'])){
 }
 require 'vendor/autoload.php';
 //uploads/baocao.xlsx
-$xlsx = SimpleXLSX::parse('uploads/baocao.xlsx');
+$xlsx = SimpleXLSX::parse('sheet_test.xlsx');
+//$xlsx = SimpleXLSX::parse('uploads/baocao.xlsx');
 $sheetsCount = $xlsx->sheetsCount() ;
 
 /*
@@ -18,7 +19,6 @@ if(isset($_GET['sheet'])){
 		echo '<table border="1" cellpadding="3" style="border-collapse: collapse" id="myTable">';
 		$for = $xlsx->rows($sheet);
 		foreach( $for as $r ) {
-			
 
 			echo '<tr><td class="editMe">'.implode('</td><td class="editMe">', $r ).'</td></tr>';
 
@@ -28,9 +28,8 @@ if(isset($_GET['sheet'])){
 	} else {
 		echo SimpleXLSX::parseError();
 	}
+	exit();
 }
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,6 +41,8 @@ if(isset($_GET['sheet'])){
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
         crossorigin="anonymous">
 </script>
+<script src="assets/js/jquery.min.js"></script>
+
 <script src="assets/js/SimpleTableCellEditor.js"></script>
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 <div style="padding-top: 1%"></div>
@@ -53,18 +54,10 @@ if(isset($_GET['sheet'])){
 					<center>
 	<?php
 
-	if($sheetsCount > 1){
+	if($sheetsCount > 0){
 
 		for ($i=0; $i < $sheetsCount; $i++) { 
-			if(isset($sheet)){
-				if($sheet == $i){
-					echo '<a href="/done_1.php?id_file='.$id_file.'&sheet='.$i.'" type="button" class="btn btn-success">'.$xlsx->sheetName($i).'</a>';
-				}else{
-					echo '<a href="/done_1.php?id_file='.$id_file.'&sheet='.$i.'" type="button" class="btn btn-default">'.$xlsx->sheetName($i).'</a>';
-				}
-			}else{
-				exit();
-			}
+			echo '<button onclick="load_sheet('.$i.')" type="button" class="btn btn-default">'.$xlsx->sheetName($i).'</button>';
 			
 			
 		}
@@ -81,7 +74,10 @@ if(isset($_GET['sheet'])){
 	?>
 	</center>
 				 
-		<br><br>		 
+		<br><br>
+</div>
+</div>
+</div>		 
 <div class="col-md-12">
 <center>
 	<div id="table_ajax"></div>
@@ -94,17 +90,28 @@ if(isset($_GET['sheet'])){
 
 </div>
 <script type="text/javascript">
-  $(document).ready(function() {
-
-  editor = new SimpleTableCellEditor("myTable");
+function enable_tabledit(){
+	  editor = new SimpleTableCellEditor("myTable");
   editor.SetEditableClass("editMe");
 
   $('#myTable').on("cell:edited", function (event) {
     console.log(`'${event.oldValue}' changed to '${event.newValue}'`);
   });
-
+}
+function load_sheet(id){
+	$('#table_ajax').html('Đang load sheet...');
+	$.get('', {sheet: id}).done(function(a){
+		$('#table_ajax').html(a);
+		enable_tabledit();
+	}).fail(function(){	
+		$('#table_ajax').html('Khong the load sheet...');
+		alert('Ko the load sheet');
+	})
+}
+$('button').click(function(){
+	$('button').prop("disabled", false).removeClass('btn-primary').addClass('btn-default');
+	$(this).prop("disabled", true).removeClass('btn-default').addClass('btn-primary');
 });
-
 </script>
 </body>
 </html>

@@ -7,16 +7,47 @@ namespace Composer\Autoload;
 class ComposerStaticInit7fed3ed09eb6951685f5b4a3582acb6f
 {
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Ticketpark\\HtmlPhpExcel\\' => 24,
+        ),
         'E' => 
         array (
             'ExcelMerge\\' => 11,
         ),
+        'D' => 
+        array (
+            'Doctrine\\Common\\Lexer\\' => 22,
+            'Doctrine\\Common\\Cache\\' => 22,
+            'Doctrine\\Common\\Annotations\\' => 28,
+            'Doctrine\\Common\\' => 16,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Ticketpark\\HtmlPhpExcel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ticketpark/htmlphpexcel/lib/HtmlPhpExcel',
+        ),
         'ExcelMerge\\' => 
         array (
             0 => __DIR__ . '/..' . '/infostreams/excel-merge',
+        ),
+        'Doctrine\\Common\\Lexer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer',
+        ),
+        'Doctrine\\Common\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
+        ),
+        'Doctrine\\Common\\Annotations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations',
+        ),
+        'Doctrine\\Common\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
         ),
     );
 
@@ -26,6 +57,17 @@ class ComposerStaticInit7fed3ed09eb6951685f5b4a3582acb6f
             'PHPExcel' => 
             array (
                 0 => __DIR__ . '/..' . '/phpoffice/phpexcel/Classes',
+            ),
+        ),
+        'D' => 
+        array (
+            'Doctrine\\Common\\Inflector\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
+            ),
+            'Doctrine\\Common\\Collections\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/collections/lib',
             ),
         ),
     );

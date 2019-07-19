@@ -6,10 +6,11 @@ if(!isset($_GET['id_file'])){
 }
 require 'vendor/autoload.php';
 //uploads/baocao.xlsx
-$xlsx = SimpleXLSX::parse('sheet_test.xlsx');
+$xlsx = SimpleXLSX::parse('uploads/baocao.xlsx');
 //$xlsx = SimpleXLSX::parse('uploads/baocao.xlsx');
 $sheetsCount = $xlsx->sheetsCount() ;
-
+echo $xlsx->toHTML();	
+exit();
 /*
 AJAX split sheet
 */

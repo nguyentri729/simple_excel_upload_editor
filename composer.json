@@ -1,0 +1,7 @@
+{
+    "require": {
+        "shuchkin/simplexlsx": "^0.8.8",
+        "infostreams/excel-merge": "^0.8.5",
+        "phpoffice/phpexcel": "^1.8"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "require": {
+        "shuchkin/simplexlsx": "^0.8.8",
+        "limanweb/xlsxwriter": "^0.2.0"
+    }
+}

@@ -1,0 +1,30 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="http://cdn.bossanova.uk/js/jquery.jexcel.js"></script>
+<link rel="stylesheet" href="http://cdn.bossanova.uk/css/jquery.jexcel.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+
+<div id="my"></div>
+
+<script>
+
+            $.ajax({
+                async: false,
+                method: 'GET',
+                url: "excel.php",
+            }).done(function(a) {
+               JSON.parse(a)
+            data = [
+                 ['Google', 1998, 807.80],
+                ['Apple', 1976, 116.52],
+                ['Yahoo', 1994, 38.66],
+            ];
+            //console.log(data2);
+            $('#my').jexcel({ data:data, colWidths: [ 300, 80, 100 ] });
+            }).fail(function(){
+               
+            });
+
+</script>
+</html>
